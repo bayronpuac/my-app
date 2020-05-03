@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useReducer, useEffect} from 'react';
 import './App.css';
+import {initialState, reducer} from './reducer/reducer';
+import {fetchVid} from './actions/actions';
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+
+  useEffect(() => {
+    const videos = fetchVid()
+    console.log("here", videos)
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> Soccer is Life</h1>
+      <button onClick={fetchVid()}>Here</button>
     </div>
   );
 }
